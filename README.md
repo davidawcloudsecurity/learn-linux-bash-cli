@@ -8,7 +8,7 @@ This guide demonstrates how to use the command line tools `grep`, `sed`, `awk`, 
 - Tools `grep`, `sed`, `awk`, and `jq` must be installed. If they're not installed, you can install them using the following commands:
 ```bash
 sudo apt update
-sudo apt install grep sed awk jq
+sudo apt install grep sed awk jq coreutils
 ```
 Use grep to search for all INFO log entries.
 ```bash
