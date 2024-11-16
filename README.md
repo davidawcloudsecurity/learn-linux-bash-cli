@@ -124,6 +124,17 @@ Search for lines that begin with INFO and end with in.
 ```bash
 grep -E "^INFO.*in$" logfile.txt
 ```
+### Using -E (Extended Regular Expressions)
+OR
+```bash
+grep -e "INFO" -e "ERROR" logfile.txt
+grep -E "ERROR|WARNING" logfile.txt
+```
+AND
+```bash
+grep "INFO" logfile.txt | grep "User"
+
+```
 ## Advanced sed Examples
 ### 1. Perform Multiple Edits
 Change all occurrences of ERROR to CRITICAL and WARNING to ALERT.
@@ -163,6 +174,10 @@ ID    Name       Age
 1     John       25   
 2     Jane       30   
 3     Joe        22
+```
+### 4. Using awk for Logical AND
+```bash
+awk '/INFO/ && /User/' logfile.txt
 ```
 ## Advanced jq Examples
 ### 1. Pretty-Print JSON
