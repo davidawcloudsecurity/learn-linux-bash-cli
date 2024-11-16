@@ -46,10 +46,6 @@ id,name,age
 2,Jane,30
 3,Joe,22
 ```
-This is a simple text file that we'll use with awk for processing structured text.
-```bash
-echo -e "Name: John\nAge: 25\nCity: New York\nName: Jane\nAge: 30\nCity: London" > textfile.txt
-```
 ### 3. Create a Sample Text File: textfile.txt
 This is a simple text file that we'll use with awk for processing structured text.
 ```bash
