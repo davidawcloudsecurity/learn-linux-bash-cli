@@ -10,14 +10,47 @@ This guide demonstrates how to use the command line tools `grep`, `sed`, `awk`, 
 sudo apt update
 sudo apt install grep sed awk jq coreutils
 ```
+### File Setup
+We will create the following sample files for each tool:
+```bash
+logfile.txt - A simple log file.
+data.csv - A CSV file.
+data.json - A JSON file.
+```
+### 1. Create a Sample Log File: logfile.txt
+```bash
+echo -e "INFO User logged in\nERROR Invalid password\nINFO User logged out\nWARNING Disk space low" > logfile.txt
+```
 Use grep to search for all INFO log entries.
 ```bash
 grep "INFO" logfile.txt
+```
+Output
+```bash
+INFO User logged in
+INFO User logged out
+```
+### 2. Create a Sample CSV File: data.csv
+The CSV file contains sample user data.
+```bash
+echo -e "id,name,age\n1,John,25\n2,Jane,30\n3,Joe,22" > data.csv
 ```
 Use sed to change all occurrences of John to Johnny in the CSV file.
 ```bash
 sed 's/John/Johnny/' data.csv
 ```
+Output
+```bash
+id,name,age
+1,Johnny,25
+2,Jane,30
+3,Joe,22
+```
+This is a simple text file that we'll use with awk for processing structured text.
+```bash
+echo -e "Name: John\nAge: 25\nCity: New York\nName: Jane\nAge: 30\nCity: London" > textfile.txt
+```
+### 3. Create a Sample Text File: textfile.txt
 This is a simple text file that we'll use with awk for processing structured text.
 ```bash
 echo -e "Name: John\nAge: 25\nCity: New York\nName: Jane\nAge: 30\nCity: London" > textfile.txt
