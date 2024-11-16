@@ -25,6 +25,10 @@ Use grep to search for all INFO log entries.
 ```bash
 grep "INFO" logfile.txt
 ```
+Use grep -l to search for all the logs that contains INFO entries.
+```bash
+grep -l "INFO" .
+```
 Output
 ```bash
 INFO User logged in
