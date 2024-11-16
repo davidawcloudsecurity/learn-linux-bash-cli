@@ -74,9 +74,7 @@ Display 2 lines before and after each match using -C.
 grep -C 2 "Disk space" logfile.txt
 ```
 Output:
-```bash
-sql
-Copy code
+```sql
 INFO User logged out
 WARNING Disk space low
 INFO User logged in
