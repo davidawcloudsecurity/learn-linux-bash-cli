@@ -62,114 +62,100 @@ Use jq to filter users who are older than 25.
 ```bash
 jq '.users[] | select(.age > 25)' data.json
 ```
-Advanced grep Examples
-1. Search Recursively in Directories
+## Advanced grep Examples
+### 1. Search Recursively in Directories
 Use grep to search for the term ERROR in all .log files within a directory.
-
-bash
-Copy code
+```bash
 grep -r "ERROR" *.log
-2. Search with Context
+```
+### 2. Search with Context
 Display 2 lines before and after each match using -C.
-
-bash
-Copy code
+```bash
 grep -C 2 "Disk space" logfile.txt
+```
 Output:
-
+```bash
 sql
 Copy code
 INFO User logged out
 WARNING Disk space low
 INFO User logged in
-3. Use Regular Expressions
+```
+### 3. Use Regular Expressions
 Search for lines that begin with INFO and end with in.
-
-bash
-Copy code
+```bash
 grep -E "^INFO.*in$" logfile.txt
-Advanced sed Examples
-1. Perform Multiple Edits
+```
+## Advanced sed Examples
+### 1. Perform Multiple Edits
 Change all occurrences of ERROR to CRITICAL and WARNING to ALERT.
-
-bash
-Copy code
+```bash
 sed -e 's/ERROR/CRITICAL/g' -e 's/WARNING/ALERT/g' logfile.txt
-2. Delete Lines Matching a Pattern
+```
+### 2. Delete Lines Matching a Pattern
 Remove all lines containing INFO.
-
-bash
-Copy code
+```bash
 sed '/INFO/d' logfile.txt
-3. Insert Text After a Line
+```
+### 3. Insert Text After a Line
 Add a message after lines containing CRITICAL.
-
-bash
-Copy code
+```bash
 sed '/CRITICAL/a\Please check immediately.' logfile.txt
-Advanced awk Examples
-1. Conditional Filtering
+```
+## Advanced awk Examples
+### 1. Conditional Filtering
 Print rows from a CSV file where age is greater than 25.
-
-bash
-Copy code
+```bash
 awk -F, '$3 > 25 {print $0}' data.csv
-2. Perform Calculations
+```
+### 2. Perform Calculations
 Sum the ages in the CSV file.
-
-bash
-Copy code
+```bash
 awk -F, 'NR>1 {sum += $3} END {print "Total age:", sum}' data.csv
-3. Modify Output Format
+```
+### 3. Modify Output Format
 Format the CSV file into a table with column headers.
-
-bash
-Copy code
-awk -F, 'BEGIN {printf "%-5s %-10s %-5s\n", "ID", "Name", "Age"} 
+```bash
+awk -F, 'BEGIN {printf "%-5s %-10s %-5s\n", "ID", "Name", "Age"} \
          NR>1 {printf "%-5s %-10s %-5s\n", $1, $2, $3}' data.csv
+```
 Output:
-
-Copy code
+```bash
 ID    Name       Age  
 1     John       25   
 2     Jane       30   
-3     Joe        22   
-Advanced jq Examples
-1. Pretty-Print JSON
+3     Joe        22
+```
+## Advanced jq Examples
+### 1. Pretty-Print JSON
 Format JSON output for better readability.
-
-bash
-Copy code
+```bash
 jq '.' data.json
-2. Extract Specific Fields
+```
+### 2. Extract Specific Fields
 Get a list of user names as a JSON array.
-
-bash
-Copy code
+```bash
 jq '[.users[].name]' data.json
+```
 Output:
-
-json
-Copy code
+```json
 [
   "John",
   "Jane"
 ]
-3. Modify JSON Data
+### 3. Modify JSON Data
 Add a new field to each user.
-
-bash
-Copy code
+```bash
 jq '.users[] += {"status": "active"}' data.json
+```
 Output:
-
-json
-Copy code
+```json
 {
   "name": "John",
   "age": 25,
   "status": "active"
 }
+```
 ### cut - Extract Specific Columns
 Extract the "name" column from the CSV file.
 ```bash
