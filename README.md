@@ -181,6 +181,7 @@ echo "logfile.txt data.csv" | xargs ls -lh
 Find all .log files modified in the last 7 days.
 ```bash
 find . -name "*.log" -mtime -7
+```
 ### tee - Save and Display Output
 Save grep results to a file while displaying them.
 ```bash
