@@ -62,6 +62,150 @@ Use jq to filter users who are older than 25.
 ```bash
 jq '.users[] | select(.age > 25)' data.json
 ```
+Advanced grep Examples
+1. Search Recursively in Directories
+Use grep to search for the term ERROR in all .log files within a directory.
+
+bash
+Copy code
+grep -r "ERROR" *.log
+2. Search with Context
+Display 2 lines before and after each match using -C.
+
+bash
+Copy code
+grep -C 2 "Disk space" logfile.txt
+Output:
+
+sql
+Copy code
+INFO User logged out
+WARNING Disk space low
+INFO User logged in
+3. Use Regular Expressions
+Search for lines that begin with INFO and end with in.
+
+bash
+Copy code
+grep -E "^INFO.*in$" logfile.txt
+Advanced sed Examples
+1. Perform Multiple Edits
+Change all occurrences of ERROR to CRITICAL and WARNING to ALERT.
+
+bash
+Copy code
+sed -e 's/ERROR/CRITICAL/g' -e 's/WARNING/ALERT/g' logfile.txt
+2. Delete Lines Matching a Pattern
+Remove all lines containing INFO.
+
+bash
+Copy code
+sed '/INFO/d' logfile.txt
+3. Insert Text After a Line
+Add a message after lines containing CRITICAL.
+
+bash
+Copy code
+sed '/CRITICAL/a\Please check immediately.' logfile.txt
+Advanced awk Examples
+1. Conditional Filtering
+Print rows from a CSV file where age is greater than 25.
+
+bash
+Copy code
+awk -F, '$3 > 25 {print $0}' data.csv
+2. Perform Calculations
+Sum the ages in the CSV file.
+
+bash
+Copy code
+awk -F, 'NR>1 {sum += $3} END {print "Total age:", sum}' data.csv
+3. Modify Output Format
+Format the CSV file into a table with column headers.
+
+bash
+Copy code
+awk -F, 'BEGIN {printf "%-5s %-10s %-5s\n", "ID", "Name", "Age"} 
+         NR>1 {printf "%-5s %-10s %-5s\n", $1, $2, $3}' data.csv
+Output:
+
+Copy code
+ID    Name       Age  
+1     John       25   
+2     Jane       30   
+3     Joe        22   
+Advanced jq Examples
+1. Pretty-Print JSON
+Format JSON output for better readability.
+
+bash
+Copy code
+jq '.' data.json
+2. Extract Specific Fields
+Get a list of user names as a JSON array.
+
+bash
+Copy code
+jq '[.users[].name]' data.json
+Output:
+
+json
+Copy code
+[
+  "John",
+  "Jane"
+]
+3. Modify JSON Data
+Add a new field to each user.
+
+bash
+Copy code
+jq '.users[] += {"status": "active"}' data.json
+Output:
+
+json
+Copy code
+{
+  "name": "John",
+  "age": 25,
+  "status": "active"
+}
+### cut - Extract Specific Columns
+Extract the "name" column from the CSV file.
+```bash
+cut -d, -f2 data.csv
+```
+Output:
+```bash
+name
+John
+Jane
+Joe
+```
+### sort and uniq - Sorting and Deduplication
+Sort the names and remove duplicates.
+```bash
+cut -d, -f2 data.csv | sort | uniq
+```
+### xargs - Build Commands from Input
+Use xargs to list detailed information for a set of files.
+```bash
+echo "logfile.txt data.csv" | xargs ls -lh
+```
+### find - Search for Files
+Find all .log files modified in the last 7 days.
+```bash
+find . -name "*.log" -mtime -7
+### tee - Save and Display Output
+Save grep results to a file while displaying them.
+```bash
+grep "ERROR" logfile.txt | tee errors.txt
+```
+### Combining Tools: Power of Pipelines
+Find all users older than 25 from data.json, format them as a CSV, and save to a file.
+```bash
+jq -r '.users[] | select(.age > 25) | [.name, .age] | @csv' data.json | tee filtered_user
+```
 ```bash
 {
   "name": "Jane",
