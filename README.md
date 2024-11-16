@@ -91,6 +91,13 @@ Use jq to filter users who are older than 25.
 ```bash
 jq '.users[] | select(.age > 25)' data.json
 ```
+Output
+```json
+{
+  "name": "Jane",
+  "age": 30
+}
+```
 ## Advanced grep Examples
 ### 1. Search Recursively in Directories
 Use grep to search for the term ERROR in all .log files within a directory.
