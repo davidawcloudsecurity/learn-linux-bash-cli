@@ -210,6 +210,45 @@ Output:
   "status": "active"
 }
 ```
+#### 3.1 Replace value in json
+```bash
+tf_variables=$(echo "${tf_variables}" | jq --arg instance_name "$instance_name" '.account_name = $instance_name')
+```
+If tf_variables contains:
+```json
+{
+  "account_name": "old_value"
+}
+```
+And instance_name="new_value", the result will be:
+```json
+{
+  "account_name": "new_value"
+}
+```
+#### 3.2 Add new line and value in json
+```bash
+tf_variables=$(echo "$tf_variables" | jq --arg newarn "$new_arn" '. + {iam_arn: $newarn}')
+```
+Input JSON (tf_variables):
+```json
+{
+  "account_name": "example_account"
+}
+```
+Shell Variable ($new_arn):
+
+plaintext
+```json
+"arn:aws:iam::123456789012:user/example"
+```
+Result (tf_variables):
+```json
+{
+  "account_name": "example_account",
+  "iam_arn": "arn:aws:iam::123456789012:user/example"
+}
+```
 ### cut - Extract Specific Columns
 Extract the "name" column from the CSV file.
 ```bash
