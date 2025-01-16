@@ -77,6 +77,16 @@ Output
 John
 Jane
 ```
+### 4. Locate the specific file by its name and partial path
+```bash
+sudo find / -path '*/services/asset/dataset-sftp-export/approvals/example.js'
+# insensitive
+sudo find / -ipath '*/services/asset/dataset-sftp-export/approvals/list.js'
+# faster result
+sudo find /home -path '*/services/asset/dataset-sftp-export/approvals/list.js'
+# Redirect Errors: Suppress permission-denied errors during the search
+sudo find / -path '*/services/asset/dataset-sftp-export/approvals/list.js' 2>/dev/null
+```
 ### Create a Sample JSON File: data.json
 The JSON file contains information about users and their preferences.
 ```bash
