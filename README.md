@@ -302,3 +302,8 @@ jq -r '.users[] | select(.age > 25) | [.name, .age] | @csv' data.json | tee filt
   "age": 30
 }
 ```
+How to while loop one liner bash
+```
+while [ condition ]; do command; done
+```
+https://linuxsimply.com/bash-scripting-tutorial/loop/while-loop/while-loop-one-line/
